@@ -1,6 +1,30 @@
 @import 'res-base/scss/var';
 @import 'res-base/scss/bourbon/bourbon';
 
-.ux-rotation-rotation{
-    
+.ux-rotation{
+    width: 300px;
+    margin: 0 auto;
+    &_left{
+        width: 30px;
+    }
+
+    &-center{
+        width: 300px;
+        overflow: hidden;
+    }
+    &-centerList{
+        width: 900px;
+        text-align: center;
+    }
+
+    &_centerItem{
+        width: 300px;
+        background-color: deepskyblue;
+    }
+
+    &_right{
+        width: 30px;
+        top:0;
+        right:0;
+    }
 }

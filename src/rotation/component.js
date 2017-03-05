@@ -36,7 +36,10 @@ NEJ.define([
             });
             // FIXME 设置组件视图模型的默认值
             util.extend(this.data, {
-
+                test: false,
+                otherSwing: false,
+                srcArr: ['1','2','3','4','5','6','7'],
+                picNo: 1
             });
             this.supr();
             // TODO
@@ -52,6 +55,63 @@ NEJ.define([
         init: function () {
             // TODO
             this.supr();
+            this.initNode();
+        },
+
+        initNode: function () {
+            // TODO
+            this.data.oneFrame = this.$refs.oneFrame;
+            this.data.twoFrame = this.$refs.twoFrame;
+            this.data.frameParent = this.$refs.frameParent;
+        },
+
+        leftClick: function(){
+            var _that = this;
+            this.data.picNo--;
+            if(this.data.picNo<1){
+                this.data.picNo=7;
+            }
+            var _node = $(this.data.frameParent).find("li:last-child");
+            var temp=_node.clone();
+            _node.remove();
+            temp.css({marginLeft:"-300px"}).text(_that.data.srcArr[_that.data.picNo-1]);
+            $(_that.data.frameParent).prepend(temp);
+            $(this.data.frameParent).find("li:first-child").animate({
+                marginLeft:"0"
+            },1000);
+        },
+
+        rightClick: function(){
+            var _that = this;
+            this.data.picNo++;
+            if(this.data.picNo==7){
+                this.data.picNo=0;
+            }else if(this.data.picNo==8){
+                this.data.picNo=1;
+            }
+            $(this.data.frameParent).find("li:first-child").animate({
+                marginLeft:"-300px"
+            },1000,function(){
+                var temp=$(this).clone();
+                $(this).remove();
+                //temp.css({marginLeft:"0"}).children().attr("src",this.data.srcArr[this.data.picNo]);
+                temp.css({marginLeft:"0"}).text(_that.data.srcArr[_that.data.picNo]);
+                $(_that.data.frameParent).append(temp);
+            });
+        },
+
+        myclick: function () {
+            debugger
+            // TODO
+            this.data.test = true;
+            this.$update();
+        },
+
+        mycall: function () {
+            debugger
+            // TODO
+            this.data.otherSwing = true;
+            this.$update();
         },
 
         /**
