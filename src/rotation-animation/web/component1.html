@@ -1,0 +1,22 @@
+<div class="ux-rotation1 f-pr">
+    <div class="ux-rotation-center" ref="rotationCenter">
+        <ul class="ux-rotation-centerList" ref="frameParent">
+            <li r-hide={showNext} class="ux-rotation_centerItem box animated" r-animation="when: currentAnimationTag;class:  {outAnimation};call: this.currentAnimationOver() ;">
+                <img src="{currenImg}">
+            </li>
+            <li r-hide={!showNext} class="ux-rotation_centerItem box animated" r-animation="when: nextAnimationTag;class:  {inAnimation};call: this.nextAimationOver() ;">
+                <img src="{nextImg}">
+            </li>
+        </ul>
+    </div>
+    <div class="ux-rotation_left f-pa" on-click="{this.doClick('left')}">
+        左
+    </div>
+    <div class="ux-rotation_right f-pa" on-click="{this.doClick('right')}">
+        右
+    </div>
+</div>
+
+
+
+

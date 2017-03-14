@@ -1,0 +1,94 @@
+@import 'res-base/scss/var';
+@import 'res-base/scss/bourbon/bourbon';
+
+.ux-rotation{
+    width: 300px;
+    margin: 0 auto;
+    &_left{
+        width: 30px;
+        height: 30px;
+        top:50%;
+        left: 0;
+        transform: translateY(-50%);
+        -ms-transform:rotateY(-50%); 	/* IE 9 */
+        -moz-transform:rotateY(-50%); 	/* Firefox */
+        -webkit-transform:rotateY(-50%); /* Safari 和 Chrome */
+        -o-transform:rotateY(-50%);
+        cursor: pointer;
+    }
+
+    &-center{
+        width: 300px;
+        overflow: hidden;
+    }
+    &-centerList{
+        width: 900px;
+        text-align: center;
+    }
+
+    &_centerItem{
+        width: 300px;
+        img{
+            width: 100%;
+        }
+    }
+
+    &_right{
+        width: 30px;
+        height: 30px;
+        top:50%;
+        right: 0;
+        transform: translateY(-50%);
+        -ms-transform:rotateY(-50%); 	/* IE 9 */
+        -moz-transform:rotateY(-50%); 	/* Firefox */
+        -webkit-transform:rotateY(-50%); /* Safari 和 Chrome */
+        -o-transform:rotateY(-50%);
+        cursor: pointer;
+    }
+}
+
+.ux-rotation1{
+    width: 300px;
+    margin: 0 auto;
+    &_left{
+        width: 30px;
+        height: 30px;
+        top:50%;
+        left: 0;
+        transform: translateY(-50%);
+        -ms-transform:rotateY(-50%); 	/* IE 9 */
+        -moz-transform:rotateY(-50%); 	/* Firefox */
+        -webkit-transform:rotateY(-50%); /* Safari 和 Chrome */
+        -o-transform:rotateY(-50%);
+        cursor: pointer;
+    }
+
+    &-center{
+        width: 300px;
+        overflow: hidden;
+    }
+    &-centerList{
+        width: 900px;
+        text-align: center;
+    }
+
+    &_centerItem{
+        width: 300px;
+        img{
+            width: 100%;
+        }
+    }
+
+    &_right{
+        width: 30px;
+        height: 30px;
+        top:50%;
+        right: 0;
+        transform: translateY(-50%);
+        -ms-transform:rotateY(-50%); 	/* IE 9 */
+        -moz-transform:rotateY(-50%); 	/* Firefox */
+        -webkit-transform:rotateY(-50%); /* Safari 和 Chrome */
+        -o-transform:rotateY(-50%);
+        cursor: pointer;
+    }
+}

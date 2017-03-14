@@ -7,10 +7,12 @@
  */
 NEJ.define([
     'pool/component-base/src/base',
-    'pool/component-base/src/util'
+    'pool/component-base/src/util',
+    'pro/res/util/lazy/image'
 ],function(
     Component,
-    util
+    util,
+    _image
 ){
     /**
      * Rotation 组件
@@ -21,7 +23,7 @@ NEJ.define([
      * @param {Object} options      - 组件构造参数
      * @param {Object} options.data - 与视图关联的数据模型
      */
-    var Rotation = Component.$extends({
+    var RotationSlide = Component.$extends({
         /**
          * 模板编译前用来初始化参数
          *
@@ -36,13 +38,10 @@ NEJ.define([
             });
             // FIXME 设置组件视图模型的默认值
             util.extend(this.data, {
-                test: false,
-                otherSwing: false,
-                srcArr: ['1','2','3','4','5','6','7'],
+                srcArr: ['http://edu-image.nosdn.127.net/2584CBD8F8B14937388D05C4789BB50F.jpg','http://edu-image.nosdn.127.net/BE60F7A483A800BB9811966523DE330A.jpg','http://edu-image.nosdn.127.net/94FB626EDF7B157846E8DCDCA309B43C.jpg'],
                 picNo: 1
             });
             this.supr();
-            // TODO
         },
 
         /**
@@ -56,6 +55,10 @@ NEJ.define([
             // TODO
             this.supr();
             this.initNode();
+            //_image._$$LazyImage._$allocate({
+            //    parent:this.data.rotationCenter,
+            //    attr:'src'
+            //});
         },
 
         initNode: function () {
@@ -63,30 +66,52 @@ NEJ.define([
             this.data.oneFrame = this.$refs.oneFrame;
             this.data.twoFrame = this.$refs.twoFrame;
             this.data.frameParent = this.$refs.frameParent;
+            this.data.rotationCenter = this.$refs.rotationCenter;
         },
 
+        /**
+         * 左按钮点击处理函数
+         *
+         * @protected
+         * @method  module:pool/module-rotation/src/component/rotation/component.Rotation#init
+         * @returns {void}
+         */
         leftClick: function(){
             var _that = this;
             this.data.picNo--;
+            //if(this.data.picNo ==0){
+            //    this.data.picNo=2;
+            //}else if(this.data.picNo<0){
+            //    this.data.picNo=3;
+            //}
+
             if(this.data.picNo<1){
-                this.data.picNo=7;
+                this.data.picNo=3;
             }
             var _node = $(this.data.frameParent).find("li:last-child");
             var temp=_node.clone();
             _node.remove();
-            temp.css({marginLeft:"-300px"}).text(_that.data.srcArr[_that.data.picNo-1]);
+            temp.css({marginLeft:"-300px"}).children().attr("src",_that.data.srcArr[_that.data.picNo-1]);
+            //temp.css({marginLeft:"-300px"}).children().attr("data-src",_that.data.srcArr[_that.data.picNo-1]);
             $(_that.data.frameParent).prepend(temp);
             $(this.data.frameParent).find("li:first-child").animate({
                 marginLeft:"0"
             },1000);
         },
 
+        /**
+         * 右按钮点击处理函数
+         *
+         * @protected
+         * @method  module:pool/module-rotation/src/component/rotation/component.Rotation#init
+         * @returns {void}
+         */
         rightClick: function(){
             var _that = this;
             this.data.picNo++;
-            if(this.data.picNo==7){
+            if(this.data.picNo==3){
                 this.data.picNo=0;
-            }else if(this.data.picNo==8){
+            }else if(this.data.picNo==4){
                 this.data.picNo=1;
             }
             $(this.data.frameParent).find("li:first-child").animate({
@@ -94,24 +119,10 @@ NEJ.define([
             },1000,function(){
                 var temp=$(this).clone();
                 $(this).remove();
-                //temp.css({marginLeft:"0"}).children().attr("src",this.data.srcArr[this.data.picNo]);
-                temp.css({marginLeft:"0"}).text(_that.data.srcArr[_that.data.picNo]);
+                temp.css({marginLeft:"0"}).children().attr("src",_that.data.srcArr[_that.data.picNo]);
+                //temp.css({marginLeft:"0"}).children().attr("data-src",_that.data.srcArr[_that.data.picNo]);
                 $(_that.data.frameParent).append(temp);
             });
-        },
-
-        myclick: function () {
-            debugger
-            // TODO
-            this.data.test = true;
-            this.$update();
-        },
-
-        mycall: function () {
-            debugger
-            // TODO
-            this.data.otherSwing = true;
-            this.$update();
         },
 
         /**
@@ -127,5 +138,5 @@ NEJ.define([
         }
     });
 
-    return Rotation;
+    return RotationSlide;
 });
