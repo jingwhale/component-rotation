@@ -13,6 +13,8 @@ NEJ.define([
     var _slideUI = new _slideUi({}).$inject("#j-rotation-slide");
     var _animationUI = new _animationUi({
         data:{
+            width: 300,
+            height:300,
             outAnimation: "fadeOut",
             inAnimation: "fadeIn",
             picArr: ['http://edu-image.nosdn.127.net/2584CBD8F8B14937388D05C4789BB50F.jpg','http://edu-image.nosdn.127.net/BE60F7A483A800BB9811966523DE330A.jpg','http://edu-image.nosdn.127.net/94FB626EDF7B157846E8DCDCA309B43C.jpg']
