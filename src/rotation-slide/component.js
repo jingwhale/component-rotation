@@ -79,15 +79,13 @@ NEJ.define([
         leftClick: function(){
             var _that = this;
             this.data.picNo--;
-            //if(this.data.picNo ==0){
-            //    this.data.picNo=2;
-            //}else if(this.data.picNo<0){
-            //    this.data.picNo=3;
-            //}
 
-            if(this.data.picNo<1){
+            if(this.data.picNo ==0){
                 this.data.picNo=3;
+            }else if(this.data.picNo<0){
+                this.data.picNo=2;
             }
+
             var _node = $(this.data.frameParent).find("li:last-child");
             var temp=_node.clone();
             _node.remove();
@@ -107,12 +105,11 @@ NEJ.define([
          * @returns {void}
          */
         rightClick: function(){
+            debugger
             var _that = this;
             this.data.picNo++;
             if(this.data.picNo==3){
                 this.data.picNo=0;
-            }else if(this.data.picNo==4){
-                this.data.picNo=1;
             }
             $(this.data.frameParent).find("li:first-child").animate({
                 marginLeft:"-300px"
