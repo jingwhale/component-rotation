@@ -76,14 +76,19 @@ NEJ.define([
          * @method  module:pool/module-rotation/src/component/rotation/component.Rotation#init
          * @returns {void}
          */
-        leftClick: function(){
+        prevClick: function(){
             var _that = this;
             this.data.picNo--;
 
-            if(this.data.picNo ==0){
+            //if(this.data.picNo ==0){
+            //    this.data.picNo=3;
+            //}else if(this.data.picNo<0){
+            //    this.data.picNo=2;
+            //}
+
+
+            if(this.data.picNo<1){
                 this.data.picNo=3;
-            }else if(this.data.picNo<0){
-                this.data.picNo=2;
             }
 
             var _node = $(this.data.frameParent).find("li:last-child");
@@ -104,12 +109,13 @@ NEJ.define([
          * @method  module:pool/module-rotation/src/component/rotation/component.Rotation#init
          * @returns {void}
          */
-        rightClick: function(){
-            debugger
+        nextClick: function(){
             var _that = this;
             this.data.picNo++;
             if(this.data.picNo==3){
                 this.data.picNo=0;
+            }else if(this.data.picNo==4){
+                this.data.picNo=1;
             }
             $(this.data.frameParent).find("li:first-child").animate({
                 marginLeft:"-300px"
