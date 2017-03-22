@@ -39,8 +39,8 @@ NEJ.define([
             });
             // FIXME 设置组件视图模型的默认值
             util.extend(this.data, {
-                currentImgIndex: 0,
-                nextImgIndex: 0,
+                currenImgIndex: 0,
+                nextImgIndex: 1,
                 currentAnimationTag: false,
                 nextAnimationTag: false,
                 clickType: 0,
@@ -48,12 +48,11 @@ NEJ.define([
                 picNo: 1,
                 outAnimation: "fadeOut",
                 inAnimation: "fadeIn",
-                showNext: false,
-                arrLength: this.data.picArr.length,
-                disableClick: false
+                showNext: false
             });
 
-            this.data.currentImg = this.data.picArr.slice(this.data.currentImgIndex,this.data.count);
+            this.data.currenImg = this.data.picArr[this.data.currenImgIndex];
+            this.data.nextImg = this.data.picArr[this.data.nextImgIndex];
         },
 
         /**
@@ -71,11 +70,6 @@ NEJ.define([
             //    parent:this.data.rotationCenter,
             //    attr:'src'
             //});
-
-            if(this.data.arrLength == this.data.count){
-                this.data.disableClick = true;
-                this.$update();
-            }
         },
 
         /**
@@ -86,25 +80,6 @@ NEJ.define([
          * @returns {void}
          */
         doClick: function(_type){
-            if(this.data.arrLength == this.data.count){
-                return;
-            }
-            if(_type=='left'){
-                if((this.data.nextImgIndex-this.data.count)<0){
-                    this.data.nextImgIndex = (Math.ceil(this.data.arrLength/this.data.count)-1)*this.data.count;
-                }else{
-                    this.data.nextImgIndex -= this.data.count;
-                }
-            }else if(_type=='right'){
-                if((this.data.nextImgIndex+this.data.count)>this.data.arrLength){
-                    this.data.nextImgIndex = 0;
-                }else{
-                    this.data.nextImgIndex += this.data.count;
-                }
-            }
-
-            this.data.nextImg = this.data.picArr.slice(this.data.nextImgIndex,this.data.nextImgIndex+this.data.count);
-
             this.data.clickType = _type;
             //播放动画
             this.data.currentAnimationTag = true;
@@ -118,24 +93,27 @@ NEJ.define([
          * @returns {void}
          */
         changePic: function(){
+            var _arrLength = this.data.picArr.length-1;
+
             this.data.currentImgIndex = this.data.nextImgIndex;
 
-            //if(this.data.clickType=='left'){
-            //    if((this.data.nextImgIndex-this.data.count)<0){
-            //        this.data.nextImgIndex = (Math.ceil(this.data.arrLength/this.data.count)-1)*this.data.count;
-            //    }else{
-            //        this.data.nextImgIndex -= this.data.count;
-            //    }
-            //}else if(this.data.clickType=='right'){
-            //    if((this.data.nextImgIndex+this.data.count)>this.data.arrLength){
-            //        this.data.nextImgIndex = 0;
-            //    }else{
-            //        this.data.nextImgIndex += this.data.count;
-            //    }
-            //}
+            if(this.data.clickType=='left'){
+                if(this.data.nextImgIndex==0){
+                    this.data.nextImgIndex = _arrLength;
+                }else{
+                    this.data.nextImgIndex--;
+                }
+            }else if(this.data.clickType=='right'){
+                if(this.data.nextImgIndex==_arrLength){
+                    this.data.nextImgIndex = 0;
+                }else{
+                    this.data.nextImgIndex++;
+                }
+            }
 
-            this.data.currentImg = this.data.picArr.slice(this.data.currentImgIndex,this.data.currentImgIndex+this.data.count);
-            //this.data.nextImg = this.data.picArr.slice(this.data.nextImgIndex,this.data.nextImgIndex+this.data.count);
+            this.data.currentImg = this.data.picArr[this.data.currentImgIndex];
+            this.data.nextImg = this.data.picArr[this.data.nextImgIndex];
+            this.$update();
         },
 
         /**
@@ -167,7 +145,6 @@ NEJ.define([
             this.data.showNext = false;
             this.data.nextAnimationTag = false;
             this.$update();
-            console.log(this.data.currentImgIndex);
         },
 
         /**

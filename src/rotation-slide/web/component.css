@@ -1,2 +1,60 @@
-.ux-rotation1{width:300px;margin:0 auto}.ux-rotation1_left{width:30px;height:30px;top:50%;left:0;transform:translateY(-50%);-ms-transform:rotateY(-50%);-moz-transform:rotateY(-50%);-webkit-transform:rotateY(-50%);-o-transform:rotateY(-50%);cursor:pointer}.ux-rotation1-center{width:300px;overflow:hidden}.ux-rotation1-centerList{width:900px;text-align:center}.ux-rotation1_centerItem{width:300px}.ux-rotation1_centerItem img{width:100%}.ux-rotation1_right{width:30px;height:30px;top:50%;right:0;transform:translateY(-50%);-ms-transform:rotateY(-50%);-moz-transform:rotateY(-50%);-webkit-transform:rotateY(-50%);-o-transform:rotateY(-50%);cursor:pointer}
+@charset "UTF-8";
+/* em-base */
+/* Height */
+/* Font Size */
+/* Padding */
+/* Border Radius */
+/* Brand Colors */
+/* Gray Colors */
+/* Base Colors */
+/* Shadow */
+/* dropdown */
+/* Dimensions */
+/* Colors */
+/* Form Control Item */
+/* Font Family */
+/* 衬线字体 */
+/* 非衬线字体 */
+.ux-rotation1 {
+  width: 300px;
+  margin: 0 auto; }
+  .ux-rotation1_left {
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    -ms-transform: rotateY(-50%);
+    /* IE 9 */
+    -moz-transform: rotateY(-50%);
+    /* Firefox */
+    -webkit-transform: rotateY(-50%);
+    /* Safari 和 Chrome */
+    -o-transform: rotateY(-50%);
+    cursor: pointer; }
+  .ux-rotation1-center {
+    width: 300px;
+    overflow: hidden; }
+  .ux-rotation1-centerList {
+    width: 900px;
+    text-align: center; }
+  .ux-rotation1_centerItem {
+    width: 300px; }
+    .ux-rotation1_centerItem img {
+      width: 100%; }
+  .ux-rotation1_right {
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    -ms-transform: rotateY(-50%);
+    /* IE 9 */
+    -moz-transform: rotateY(-50%);
+    /* Firefox */
+    -webkit-transform: rotateY(-50%);
+    /* Safari 和 Chrome */
+    -o-transform: rotateY(-50%);
+    cursor: pointer; }
+
 /*# sourceMappingURL=component.css.map */

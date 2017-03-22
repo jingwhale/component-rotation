@@ -1,18 +1,26 @@
-<div class="ux-rotation f-pr" style="width: {width};height: {height}">
+<div class="ux-rotation f-pr" style="width: {width*count};height: {height}">
     <div class="ux-rotation-center" ref="rotationCenter">
-        <ul class="ux-rotation-centerList">
-            <li r-hide={showNext} class="ux-rotation_centerItem box animated" r-animation="when: currentAnimationTag;class:  {outAnimation};call: this.currentAnimationOver() ;">
-                <img src="{currenImg}">
-            </li>
-            <li r-hide={!showNext} class="ux-rotation_centerItem box animated" r-animation="when: nextAnimationTag;class:  {inAnimation};call: this.nextAimationOver() ;">
-                <img src="{nextImg}">
-            </li>
-        </ul>
+        <div class="ux-rotation-centerList">
+            <div class="f-cb" r-hide={showNext} class="ux-rotation_centerItem box animated" r-animation="when: currentAnimationTag;class:  {outAnimation};call: this.currentAnimationOver() ;">
+                {#list currentImg as currentItem}
+                <div class="f-fl" style="width: {width};height: {height}">
+                    <img src="{currentItem}">
+                </div>
+                {/list}
+            </div>
+            <div class="f-cb" class="f-fl" r-hide={!showNext} class="ux-rotation_centerItem box animated" r-animation="when: nextAnimationTag;class:  {inAnimation};call: this.nextAimationOver() ;">
+                {#list nextImg as nextItem}
+                <div class="f-fl" style="width: {width};height: {height}">
+                    <img src="{nextItem}">
+                </div>
+                {/list}
+            </div>
+        </div>
     </div>
-    <div class="ux-rotation_left f-pa" on-click="{this.doClick('left')}">
+    <div class="ux-rotation_left f-pa" r-class={{"disabled":disableClick}} on-click="{this.doClick('left')}" style="left:{arrowPosition}!important;">
         左
     </div>
-    <div class="ux-rotation_right f-pa" on-click="{this.doClick('right')}">
+    <div class="ux-rotation_right f-pa" r-class={{"disabled":disableClick}} on-click="{this.doClick('right')}"   style="right:{arrowPosition}!important;">
         右
     </div>
 </div>
