@@ -1,0 +1,15 @@
+@import 'res-base/scss/var';
+@import 'res-base/scss/bourbon/bourbon';
+
+.um-rotation-ux-rotation-item-inner{
+    .left{
+        width: 100%;
+        img{
+            width: 100%;
+            height: 50%;
+        }
+    }
+    .right{
+        width: 100%;
+    }
+}

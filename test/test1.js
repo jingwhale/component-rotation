@@ -5,10 +5,12 @@
  */
 NEJ.define([
     '../src/rotation-slide/web/ui.js',
-    '../src/rotation-animation/web/ui.js'
+    '../src/rotation-animation/web/ui.js',
+    '../src/component/src/ux-rotation-item-inner/ui.js'
 ],function (
     _slideUi,
-    _animationUi
+    _animationUi,
+    itemInnerUI
 ) {
     var _slideUI = new _slideUi({}).$inject("#j-rotation-slide");
     var _picArr = [
@@ -27,8 +29,9 @@ NEJ.define([
             arrowPosition: '-80px',
             outAnimation: "fadeOut",
             inAnimation: "fadeIn",
-            count: 4,
-            picArr: _picArr
+            count: 2,
+            picArr: _picArr,
+            distance:10
         }
     }).$inject("#j-rotation-animation");
 });
