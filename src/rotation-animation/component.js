@@ -8,11 +8,13 @@
 NEJ.define([
     'pool/component-base/src/base',
     'pool/component-base/src/util',
-    'pro/res/util/lazy/image'
+    'pool/nej/src/util/lazy/image',
+    './component/src/ux-rotation-item/ui.js'
 ],function(
     Component,
     util,
-    _image
+    image,
+    rotationItem
 ){
     /**
      * Rotation-animation 组件
@@ -32,23 +34,29 @@ NEJ.define([
          * @returns {void}
          */
         config: function () {
+            this.supr();
             // FIXME 设置组件配置信息的默认值
             util.extend(this, {
 
             });
             // FIXME 设置组件视图模型的默认值
             util.extend(this.data, {
-                currenImgIndex: 0,
-                animationTag: false,
+                currentImgIndex: 0,
+                nextImgIndex: 0,
+                currentAnimationTag: false,
+                nextAnimationTag: false,
                 clickType: 0,
                 rightAnimation: false,
-                srcArr: ['http://edu-image.nosdn.127.net/2584CBD8F8B14937388D05C4789BB50F.jpg','http://edu-image.nosdn.127.net/BE60F7A483A800BB9811966523DE330A.jpg','http://edu-image.nosdn.127.net/94FB626EDF7B157846E8DCDCA309B43C.jpg'],
                 picNo: 1,
-                animationType: 'flipInX',
-                showNext: false
+                outAnimation: "fadeOut",
+                inAnimation: "fadeIn",
+                showNext: false,
+                arrLength: this.data.picArr.length,
+                disableClick: false,
+                selfUI: false
             });
-            this.supr();
-            this.data.currenImg = this.data.srcArr[this.data.currenImgIndex];
+
+            this.data.currentImg = this.data.picArr.slice(this.data.currentImgIndex,this.data.count);
         },
 
         /**
@@ -61,21 +69,34 @@ NEJ.define([
         init: function () {
             // TODO
             this.supr();
-            this.initNode();
+
             //_image._$$LazyImage._$allocate({
             //    parent:this.data.rotationCenter,
             //    attr:'src'
             //});
+
+            if(this.data.arrLength == this.data.count){
+                this.data.disableClick = true;
+                this.$update();
+            }
+
+            this.data.autoplay && this.autoplay();
         },
 
-        initNode: function () {
-            // TODO
-            this.data.oneFrame = this.$refs.oneFrame;
-            this.data.twoFrame = this.$refs.twoFrame;
-            this.data.frameParent = this.$refs.frameParent;
-            this.data.rotationCenter = this.$refs.rotationCenter;
+
+        mouseenter: function(){
+            this.clearTimer();
         },
 
+        clearTimer: function(){
+            if(this.autoplayTimer){
+                window.clearTimeout(this.autoplayTimer);
+            }
+        },
+
+        mouseout: function(){
+            this.data.autoplay && this.autoplay();
+        },
         /**
          * 按钮点击处理
          *
@@ -84,11 +105,31 @@ NEJ.define([
          * @returns {void}
          */
         doClick: function(_type){
+            this.clearTimer();
+
+            if(this.data.arrLength == this.data.count){
+                return;
+            }
+            if(_type=='left'){
+                if((this.data.nextImgIndex-this.data.count)<0){
+                    this.data.nextImgIndex = (Math.ceil(this.data.arrLength/this.data.count)-1)*this.data.count;
+                }else{
+                    this.data.nextImgIndex -= this.data.count;
+                }
+            }else if(_type=='right'){
+                if((this.data.nextImgIndex+this.data.count)>this.data.arrLength){
+                    this.data.nextImgIndex = 0;
+                }else{
+                    this.data.nextImgIndex += this.data.count;
+                }
+            }
+
+            this.data.nextImg = this.data.picArr.slice(this.data.nextImgIndex,this.data.nextImgIndex+this.data.count);
+
             this.data.clickType = _type;
-            //切换图片
-            this.changePic();
             //播放动画
-            this.data.animationTag = true;
+            this.data.currentAnimationTag = true;
+            this.$update();
         },
 
         /**
@@ -99,33 +140,56 @@ NEJ.define([
          * @returns {void}
          */
         changePic: function(){
-            if(this.data.clickType==0){
-                if(this.data.currenImgIndex==0){
-                    this.data.currenImgIndex = 2;
-                }else{
-                    this.data.currenImgIndex--;
-                }
-            }else if(this.data.clickType==1){
-                if(this.data.currenImgIndex==2){
-                    this.data.currenImgIndex = 0;
-                }else{
-                    this.data.currenImgIndex++;
-                }
-            }
-            this.data.currenImg = this.data.srcArr[this.data.currenImgIndex];
+            this.data.currentImgIndex = this.data.nextImgIndex;
+
+            this.data.currentImg = this.data.picArr.slice(this.data.currentImgIndex,this.data.currentImgIndex+this.data.count);
+            this.data.nextImg = [];
+            this.$update();
         },
 
         /**
-         * 动画结束执行函数
+         * 当前图片动画结束执行函数
          *
          * @protected
-         * @method  module:pool/module-rotation/src/component/rotation/component.Rotation-animation#animationOver
+         * @method  module:pool/module-rotation/src/component/rotation/component.Rotation-animation#currentAnimationOver
          * @returns {void}
          */
-        animationOver: function () {
+        currentAnimationOver: function () {
             // TODO
-            this.data.animationTag = false;
+            this.data.showNext = true;
+            this.data.currentAnimationTag = false;
+            this.data.nextAnimationTag = true;
             this.$update();
+        },
+
+        /**
+         * 下一个图片动画结束执行函数
+         *
+         * @protected
+         * @method  module:pool/module-rotation/src/component/rotation/component.Rotation-animation#nextAimationOver
+         * @returns {void}
+         */
+        nextAimationOver: function () {
+            // TODO
+            //切换图片
+            this.changePic();
+            this.data.showNext = false;
+            this.data.nextAnimationTag = false;
+            this.$update();
+        },
+
+        /**
+         * 下一个图片动画结束执行函数
+         *
+         * @protected
+         * @method  module:pool/module-rotation/src/component/rotation/component.Rotation-animation#nextAimationOver
+         * @returns {void}
+         */
+        autoplay: function () {
+            var that = this;
+            this.autoplayTimer = setInterval(function(){  //打开定时器
+                this.doClick('right'); //模拟触发数字按钮的click事件
+            }._$bind(this),this.data.autoplay);
         },
 
         /**

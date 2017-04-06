@@ -38,7 +38,7 @@ NEJ.define([
             });
             // FIXME 设置组件视图模型的默认值
             util.extend(this.data, {
-                srcArr: ['http://edu-image.nosdn.127.net/2584CBD8F8B14937388D05C4789BB50F.jpg','http://edu-image.nosdn.127.net/BE60F7A483A800BB9811966523DE330A.jpg','http://edu-image.nosdn.127.net/94FB626EDF7B157846E8DCDCA309B43C.jpg'],
+                srcArr: ['http://edu-image.nosdn.127.net/131B9DE5177801968F708A1CF8CBF61B.jpg', 'http://edu-image.nosdn.127.net/7936C27ADFD60175D4AB8DFDA287A939.jpg', 'http://edu-image.nosdn.127.net/4787C9E58F51EDCF29A46E8AD985C807.jpg'],
                 picNo: 1
             });
             this.supr();

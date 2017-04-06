@@ -19,6 +19,7 @@
   width: 300px;
   margin: 0 auto; }
   .ux-rotation1_left {
+    color: #fff;
     width: 30px;
     height: 30px;
     top: 50%;
@@ -43,6 +44,7 @@
     .ux-rotation1_centerItem img {
       width: 100%; }
   .ux-rotation1_right {
+    color: #fff;
     width: 30px;
     height: 30px;
     top: 50%;

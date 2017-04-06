@@ -1,0 +1,17 @@
+<div class="ux-rotation2 f-pr">
+    <div class="ux-rotation2-center" ref="rotationCenter">
+        <div class="ux-rotation2-centerList">
+            <div r-animation="when: currentAnimationTag;class:  {inAnimation};" on-mouseenter="{this.mouseenter()}" on-mouseout="{this.mouseout()}">
+                <img src="{currentImg}">
+            </div>
+        </div>
+        <div class="ux-rotation2-circle" style='width:{count*(width+distance)-distance};'>
+            <ul class="f-cb">
+                {#list srcArr as item}
+                <li class="ux-rotation2-circle_item f-fl" style="width: {width};height: {width};margin-right: {distance};background-color: {commonColor};" on-click="{this.clickCircle(item_index)}" r-class={{"activited":currentIndex===item_index,"lastOne":(srcArr.length-1)==item_index}}>
+                </li>
+                {/list}
+            </ul>
+        </div>
+    </div>
+</div>

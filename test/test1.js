@@ -6,13 +6,14 @@
 NEJ.define([
     '../src/rotation-slide/web/ui.js',
     '../src/rotation-animation/web/ui.js',
+    '../src/rotation/web/ui.js',
     '../src/component/src/ux-rotation-item-inner/ui.js'
 ],function (
     _slideUi,
     _animationUi,
+    simpleRotation,
     itemInnerUI
 ) {
-    var _slideUI = new _slideUi({}).$inject("#j-rotation-slide");
     var _picArr = [
         'http://edu-image.nosdn.127.net/131B9DE5177801968F708A1CF8CBF61B.jpg',
         'http://edu-image.nosdn.127.net/7936C27ADFD60175D4AB8DFDA287A939.jpg',
@@ -22,6 +23,8 @@ NEJ.define([
         'http://edu-image.nosdn.127.net/15AF86DFF9136BE0DBDEDC02B97171DF.jpg',
         'http://edu-image.nosdn.127.net/FD58B7CDE32397F9A91AE4ED418AA003.jpg'
     ];
+
+    var _slideUI = new _slideUi({}).$inject("#j-rotation-slide");
     var _animationUI = new _animationUi({
         data:{
             width: 300,
@@ -29,9 +32,18 @@ NEJ.define([
             arrowPosition: '-80px',
             outAnimation: "fadeOut",
             inAnimation: "fadeIn",
-            count: 2,
+            count: 3,
             picArr: _picArr,
-            distance:10
+            distance:10,
+            selfUI:true
         }
     }).$inject("#j-rotation-animation");
+
+    var _simpleRotationUI = new simpleRotation({
+        data:{
+            width: 15,
+            distance:10,
+            commonColor:"#fff"
+        }
+    }).$inject("#j-rotation");
 });

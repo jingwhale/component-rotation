@@ -1,15 +1,38 @@
-<div class="ux-rotation f-pr">
+<div class="ux-rotation f-pr" style="width: {count*(width+distance)-distance};height: {height}">
     <div class="ux-rotation-center" ref="rotationCenter">
-        <ul class="ux-rotation-centerList" ref="frameParent">
-            <li class="ux-rotation_centerItem box animated" ref="oneFrame" r-animation="when: animationTag;class:  {animationType};call: this.animationOver() ;">
-                <img src="{currenImg}">
-            </li>
-        </ul>
+        <div class="ux-rotation-centerList">
+            <div class="f-cb" r-hide={showNext} class="ux-rotation_centerItem box animated" r-animation="when: currentAnimationTag;class:  {outAnimation};call: this.currentAnimationOver() ;" {#if autoplay}on-mouseenter="{this.mouseenter()}" on-mouseout="{this.mouseout()}"{/if}>
+                {#if selfUI}
+                    {#list currentImg as rotationItem}
+                        <um-rotation-ux-rotation-item width={width} height={height} distance="{distance}" count={count-1} rotationItem="{rotationItem}" itemIndex="{rotationItem_index}"/>
+                    {/list}
+                {#else}
+                    {#list currentImg as rotationItem}
+                        <div class="f-fl" style="width: {width};height: {height};margin-right: {distance}" {#if rotationItem_index==(count-1)}style="width: {width};height: {height};margin-right: 0!important;"{/if}>
+                            <img src="{rotationItem}">
+                        </div>
+                    {/list}
+                {/if}
+            </div>
+            <div class="f-cb" class="f-fl" r-hide={!showNext} class="ux-rotation_centerItem box animated" r-animation="when: nextAnimationTag;class:  {inAnimation};call: this.nextAimationOver() ;" {#if autoplay}on-mouseenter="{this.mouseenter()}" on-mouseout="{this.mouseout()}"{/if}>
+                {#if selfUI}
+                    {#list nextImg as rotationItem}
+                        <um-rotation-ux-rotation-item width={width} height={height} distance="{distance}" count={count-1} rotationItem="{rotationItem}"/>
+                    {/list}
+                {#else}
+                    {#list extImg as rotationItem}
+                        <div class="f-fl" style="width: {width};height: {height};margin-right: {distance}" {#if rotationItem_index==(count-1)}style="width: {width};height: {height};margin-right: 0!important;"{/if}>
+                            <img src="{rotationItem}">
+                        </div>
+                    {/list}
+                {/if}
+            </div>
+        </div>
     </div>
-    <div class="ux-rotation_left f-pa" on-click="{this.doClick('left')}">
+    <div class="ux-rotation_left f-pa" r-class={{"disabled":disableClick}} on-click="{this.doClick('left')}" style="left:{arrowPosition}!important;">
         左
     </div>
-    <div class="ux-rotation_right f-pa" on-click="{this.doClick('right')}">
+    <div class="ux-rotation_right f-pa" r-class={{"disabled":disableClick}} on-click="{this.doClick('right')}"   style="right:{arrowPosition}!important;">
         右
     </div>
 </div>

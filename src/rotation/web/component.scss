@@ -1,0 +1,56 @@
+@import 'res-base/scss/var';
+@import 'res-base/scss/bourbon/bourbon';
+
+.ux-rotation2{
+    width: 300px;
+    margin: 0 auto;
+    &-center{
+
+    }
+    &-centerList{
+        cursor: pointer;
+    }
+    &-circle{
+        margin: 0 auto;
+        position: relative;
+        top: -37px;
+        &_item{
+            cursor: pointer;
+            border-radius: 50%;
+        }
+    }
+
+    .activited{
+        background-color: mediumvioletred!important;
+    }
+    .lastOne{
+        margin-right: 0!important;
+    }
+
+    @-webkit-keyframes fadeIn {
+        from {
+            opacity: 0.3;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0.3;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .fadeIn {
+        -webkit-animation-name: fadeIn;
+        animation-name: fadeIn;
+        -webkit-animation-duration: 1s;
+        animation-duration: 1s;
+    }
+}
