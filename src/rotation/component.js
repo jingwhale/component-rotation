@@ -8,7 +8,7 @@
 NEJ.define([
     'pool/component-base/src/base',
     'pool/component-base/src/util',
-    'pro/res/util/lazy/image'
+    'pool/nej/src/util/lazy/image'
 ],function(
     Component,
     util,

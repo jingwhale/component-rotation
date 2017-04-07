@@ -1,2 +1,93 @@
-.ux-rotation{margin:0 auto}.ux-rotation_left{width:30px;height:30px;top:50%;left:0;transform:translateY(-50%);-ms-transform:rotateY(-50%);-moz-transform:rotateY(-50%);-webkit-transform:rotateY(-50%);-o-transform:rotateY(-50%);cursor:pointer}.ux-rotation-center{width:100%;height:100%;overflow:hidden}.ux-rotation-centerList{width:100%;height:100%}.ux-rotation_centerItem{width:100%;height:100%}.ux-rotation_right{width:30px;height:30px;top:50%;right:0;transform:translateY(-50%);-ms-transform:rotateY(-50%);-moz-transform:rotateY(-50%);-webkit-transform:rotateY(-50%);-o-transform:rotateY(-50%);cursor:pointer}.ux-rotation .disabled{color:#ddd}.ux-rotation .marginDistance{margin-right:30px}@-webkit-keyframes fadeIn{from{opacity:0.3}to{opacity:1}}@keyframes fadeIn{from{opacity:0.3}to{opacity:1}}.ux-rotation .fadeIn{-webkit-animation-name:fadeIn;animation-name:fadeIn;-webkit-animation-duration:1s;animation-duration:1s}@-webkit-keyframes fadeOut{from{opacity:1}to{opacity:0}}@keyframes fadeOut{from{opacity:1}to{opacity:0}}.ux-rotation .fadeOut{-webkit-animation-name:fadeOut;animation-name:fadeOut;-webkit-animation-duration:1s;animation-duration:1s}
+@charset "UTF-8";
+/* em-base */
+/* Height */
+/* Font Size */
+/* Padding */
+/* Border Radius */
+/* Brand Colors */
+/* Gray Colors */
+/* Base Colors */
+/* Shadow */
+/* dropdown */
+/* Dimensions */
+/* Colors */
+/* Form Control Item */
+/* Font Family */
+/* 衬线字体 */
+/* 非衬线字体 */
+.ux-rotation {
+  margin: 0 auto; }
+  .ux-rotation_left {
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    -ms-transform: rotateY(-50%);
+    /* IE 9 */
+    -moz-transform: rotateY(-50%);
+    /* Firefox */
+    -webkit-transform: rotateY(-50%);
+    /* Safari 和 Chrome */
+    -o-transform: rotateY(-50%);
+    cursor: pointer; }
+  .ux-rotation-center {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; }
+  .ux-rotation-centerList {
+    width: 100%;
+    height: 100%; }
+  .ux-rotation_centerItem {
+    width: 100%;
+    height: 100%; }
+  .ux-rotation_right {
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    -ms-transform: rotateY(-50%);
+    /* IE 9 */
+    -moz-transform: rotateY(-50%);
+    /* Firefox */
+    -webkit-transform: rotateY(-50%);
+    /* Safari 和 Chrome */
+    -o-transform: rotateY(-50%);
+    cursor: pointer; }
+  .ux-rotation .disabled {
+    color: #ddd; }
+  .ux-rotation .marginDistance {
+    margin-right: 30px; }
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0.3; }
+  to {
+    opacity: 1; } }
+@keyframes fadeIn {
+  from {
+    opacity: 0.3; }
+  to {
+    opacity: 1; } }
+  .ux-rotation .fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s; }
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+@keyframes fadeOut {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+  .ux-rotation .fadeOut {
+    -webkit-animation-name: fadeOut;
+    animation-name: fadeOut;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s; }
+
 /*# sourceMappingURL=component.css.map */

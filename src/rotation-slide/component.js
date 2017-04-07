@@ -8,7 +8,7 @@
 NEJ.define([
     'pool/component-base/src/base',
     'pool/component-base/src/util',
-    'pro/res/util/lazy/image'
+    'pool/nej/src/util/lazy/image'
 ],function(
     Component,
     util,
@@ -38,10 +38,10 @@ NEJ.define([
             });
             // FIXME 设置组件视图模型的默认值
             util.extend(this.data, {
-                srcArr: ['http://edu-image.nosdn.127.net/131B9DE5177801968F708A1CF8CBF61B.jpg', 'http://edu-image.nosdn.127.net/7936C27ADFD60175D4AB8DFDA287A939.jpg', 'http://edu-image.nosdn.127.net/4787C9E58F51EDCF29A46E8AD985C807.jpg'],
                 picNo: 1
             });
             this.supr();
+            this.data.arrLength = this.data.picArr.length;
         },
 
         /**
@@ -80,22 +80,14 @@ NEJ.define([
             var _that = this;
             this.data.picNo--;
 
-            //if(this.data.picNo ==0){
-            //    this.data.picNo=3;
-            //}else if(this.data.picNo<0){
-            //    this.data.picNo=2;
-            //}
-
-
             if(this.data.picNo<1){
-                this.data.picNo=3;
+                this.data.picNo=this.data.arrLength;
             }
 
             var _node = $(this.data.frameParent).find("li:last-child");
             var temp=_node.clone();
             _node.remove();
-            temp.css({marginLeft:"-300px"}).children().attr("src",_that.data.srcArr[_that.data.picNo-1]);
-            //temp.css({marginLeft:"-300px"}).children().attr("data-src",_that.data.srcArr[_that.data.picNo-1]);
+            temp.css({marginLeft:"-300px"}).children().attr("src",_that.data.picArr[_that.data.picNo-1]);
             $(_that.data.frameParent).prepend(temp);
             $(this.data.frameParent).find("li:first-child").animate({
                 marginLeft:"0"
@@ -112,9 +104,9 @@ NEJ.define([
         nextClick: function(){
             var _that = this;
             this.data.picNo++;
-            if(this.data.picNo==3){
+            if(this.data.picNo==this.data.arrLength){
                 this.data.picNo=0;
-            }else if(this.data.picNo==4){
+            }else if(this.data.picNo==(this.data.arrLength+1)){
                 this.data.picNo=1;
             }
             $(this.data.frameParent).find("li:first-child").animate({
@@ -122,8 +114,7 @@ NEJ.define([
             },1000,function(){
                 var temp=$(this).clone();
                 $(this).remove();
-                temp.css({marginLeft:"0"}).children().attr("src",_that.data.srcArr[_that.data.picNo]);
-                //temp.css({marginLeft:"0"}).children().attr("data-src",_that.data.srcArr[_that.data.picNo]);
+                temp.css({marginLeft:"0"}).children().attr("src",_that.data.picArr[_that.data.picNo]);
                 $(_that.data.frameParent).append(temp);
             });
         },

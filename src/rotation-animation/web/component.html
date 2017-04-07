@@ -4,7 +4,7 @@
             <div class="f-cb" r-hide={showNext} class="ux-rotation_centerItem box animated" r-animation="when: currentAnimationTag;class:  {outAnimation};call: this.currentAnimationOver() ;" {#if autoplay}on-mouseenter="{this.mouseenter()}" on-mouseout="{this.mouseout()}"{/if}>
                 {#if selfUI}
                     {#list currentImg as rotationItem}
-                        <um-rotation-ux-rotation-item width={width} height={height} distance="{distance}" count={count-1} rotationItem="{rotationItem}" itemIndex="{rotationItem_index}"/>
+                        <um-rotation-ux-rotation-item selfUI={selfUI} width={width} height={height} distance="{distance}" count={count-1} rotationItem="{rotationItem}" itemIndex="{rotationItem_index}"/>
                     {/list}
                 {#else}
                     {#list currentImg as rotationItem}
@@ -17,7 +17,7 @@
             <div class="f-cb" class="f-fl" r-hide={!showNext} class="ux-rotation_centerItem box animated" r-animation="when: nextAnimationTag;class:  {inAnimation};call: this.nextAimationOver() ;" {#if autoplay}on-mouseenter="{this.mouseenter()}" on-mouseout="{this.mouseout()}"{/if}>
                 {#if selfUI}
                     {#list nextImg as rotationItem}
-                        <um-rotation-ux-rotation-item width={width} height={height} distance="{distance}" count={count-1} rotationItem="{rotationItem}"/>
+                        <um-rotation-ux-rotation-item selfUI={selfUI} width={width} height={height} distance="{distance}" count={count-1} rotationItem="{rotationItem}"/>
                     {/list}
                 {#else}
                     {#list extImg as rotationItem}

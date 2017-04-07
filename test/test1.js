@@ -24,7 +24,12 @@ NEJ.define([
         'http://edu-image.nosdn.127.net/FD58B7CDE32397F9A91AE4ED418AA003.jpg'
     ];
 
-    var _slideUI = new _slideUi({}).$inject("#j-rotation-slide");
+    var _slideUI = new _slideUi({
+        data:{
+            picArr: _picArr
+        }
+    }).$inject("#j-rotation-slide");
+
     var _animationUI = new _animationUi({
         data:{
             width: 300,
@@ -32,10 +37,10 @@ NEJ.define([
             arrowPosition: '-80px',
             outAnimation: "fadeOut",
             inAnimation: "fadeIn",
-            count: 3,
+            count: 2,
             picArr: _picArr,
             distance:10,
-            selfUI:true
+            selfUI:"um-rotation-ux-rotation-item-inner"
         }
     }).$inject("#j-rotation-animation");
 
